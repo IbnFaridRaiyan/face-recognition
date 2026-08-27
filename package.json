@@ -1,0 +1,14 @@
+{
+  "name": "sentinel-face-verification",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Vercel-ready, device-local face verification demonstration.",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check public/app.js && node --check public/totp.js && node --check server.mjs && node scripts/test-totp.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

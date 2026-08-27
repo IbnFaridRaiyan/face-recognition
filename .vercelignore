@@ -1,0 +1,11 @@
+# Original PHP/XAMPP implementation retained as local reference only.
+*.php
+ht.php
+connection.php
+style.css
+title-background.gif
+6666.PNG
+images/
+server.mjs
+scripts/
+README.md

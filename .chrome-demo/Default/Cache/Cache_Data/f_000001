@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08111f">
+    <meta
+      name="description"
+      content="Sentinel is a privacy-first, in-browser face verification demonstration."
+    >
+    <title>Sentinel — Private face verification</title>
+    <link rel="icon" href="/assets/brand-mark.png" type="image/png">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/human@3.3.6/dist/human.js"></script>
+    <script defer src="/totp.js"></script>
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
+        <a class="brand" href="#top" aria-label="Sentinel home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <path d="M16 2.4 27 6.7v8.1c0 7.1-4.7 12.4-11 14.8C9.7 27.2 5 21.9 5 14.8V6.7L16 2.4Z"/>
+              <path d="M11 14v-1.5a5 5 0 0 1 10 0V14m-9.2 0h8.4v7.1h-8.4V14Z"/>
+            </svg>
+          </span>
+          <span>Sentinel</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#product">Product</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#privacy">Privacy</a>
+          <a class="nav-cta" href="#demo">Open verifier</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> Verification that stays on your device</div>
+            <h1>Your face is your key.<br><em>Keep it private.</em></h1>
+            <p class="hero-lead">
+              A fast, browser-based face verification demo. Enrol and verify without sending camera
+              images to a server or creating an online account.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#demo">
+                Try face verification
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"/></svg>
+              </a>
+              <a class="button button-ghost" href="#how-it-works">See how it works</a>
+            </div>
+            <div class="trust-row" aria-label="Product highlights">
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>No image uploads</span>
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>No account required</span>
+              <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>Vercel ready</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Face verification illustration">
+            <div class="visual-glow"></div>
+            <div class="security-card">
+              <div class="card-topline">
+                <span class="live-pill"><i></i> Local processing</span>
+                <span class="card-menu">•••</span>
+              </div>
+              <div class="face-visual">
+                <div class="scan-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <div class="face-silhouette" aria-hidden="true">
+                  <span class="head"></span><span class="shoulders"></span>
+                </div>
+                <div class="scan-line" aria-hidden="true"></div>
+                <div class="face-points" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="verification-state">
+                <span class="state-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.2 4.2L19 6.5"/></svg>
+                </span>
+                <span><strong>Identity ready</strong><small>Stored on this device</small></span>
+                <b>98.4%</b>
+              </div>
+            </div>
+            <div class="floating-chip floating-chip-lock">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              <span><strong>Private by design</strong><small>Data stays local</small></span>
+            </div>
+            <div class="floating-chip floating-chip-speed">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg>
+              <span><strong>Quick check</strong><small>Runs in your browser</small></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="signal-strip" aria-label="Technology summary">
+        <div class="shell signal-grid">
+          <div><strong>1024</strong><span>descriptor values</span></div>
+          <div><strong>0</strong><span>camera images uploaded</span></div>
+          <div><strong>1</strong><span>device stores your profile</span></div>
+          <div><strong>HTTPS</strong><span>camera-ready deployment</span></div>
+        </div>
+      </section>
+
+      <section class="product section" id="product">
+        <div class="shell section-heading centered-heading">
+          <div class="eyebrow"><span></span> Built around privacy</div>
+          <h2>Security without surrendering your identity</h2>
+          <p>Sentinel turns your camera feed into a numerical descriptor in the browser. The original frame is never saved.</p>
+        </div>
+        <div class="shell feature-grid">
+          <article class="feature-card feature-card-large">
+            <span class="feature-number">01</span>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.8 3.2 8.4 7.5 10 4.3-1.6 7.5-5.2 7.5-10V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            </div>
+            <h3>Device-local by default</h3>
+            <p>Your profile remains in this browser. Clear it at any time with one click.</p>
+            <div class="local-storage-visual" aria-hidden="true">
+              <div class="storage-browser"><span></span><span></span><span></span><i></i></div>
+              <div class="storage-path"><i></i><i></i><i></i></div>
+              <div class="storage-vault"><b></b><span>Local vault</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m13 5h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="11" r="3"/><path d="M7.5 18c.8-2.3 2.3-3.5 4.5-3.5s3.7 1.2 4.5 3.5"/></svg>
+            </div>
+            <h3>Real face embeddings</h3>
+            <p>A browser ML model creates descriptors and compares them with your enrolled samples.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 10-13h-7V2Z"/></svg>
+            </div>
+            <h3>Zero backend setup</h3>
+            <p>Static files deploy directly to Vercel. No PHP runtime, database, or server session is required.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-section section" id="demo">
+        <div class="shell demo-heading">
+          <div>
+            <div class="eyebrow eyebrow-light"><span></span> Interactive demo</div>
+            <h2>Meet your private verifier</h2>
+          </div>
+          <p>First enrol a profile, then verify against it. Use a well-lit space and keep one face centered in the frame.</p>
+        </div>
+
+        <div class="shell verifier-shell">
+          <aside class="verifier-sidebar">
+            <div class="step-list" aria-label="Verification steps">
+              <div class="step active" data-step="1"><b>1</b><span><strong>Start camera</strong><small>Grant local camera access</small></span></div>
+              <div class="step" data-step="2"><b>2</b><span><strong>Enrol profile</strong><small>Save three face descriptors</small></span></div>
+              <div class="step" data-step="3"><b>3</b><span><strong>Verify</strong><small>Compare a fresh scan</small></span></div>
+            </div>
+
+            <div class="stored-profile" data-profile-card hidden>
+              <span class="profile-avatar" data-profile-initials>--</span>
+              <span><small>Enrolled profile</small><strong data-profile-name>None</strong><em data-profile-date></em></span>
+              <button type="button" class="icon-button" data-clear-profile aria-label="Delete local profile">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16m-10 4v6m4-6v6M9 7l1-3h4l1 3m3 0-1 14H7L6 7"/></svg>
+              </button>
+            </div>
+
+            <div class="sidebar-note">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.8 3.2 8.4 7.5 10 4.3-1.6 7.5-5.2 7.5-10V6L12 3Z"/><path d="M12 8v5m0 3h.01"/></svg>
+              <p><strong>Demonstration only</strong>This is not liveness-tested production authentication.</p>
+            </div>
+          </aside>
+
+          <div class="verifier-main">
+            <div class="verifier-status" role="status" aria-live="polite" data-status data-tone="idle">
+              <span class="status-dot"></span>
+              <span><strong data-status-title>Ready to begin</strong><small data-status-copy>Start your camera to load the face model.</small></span>
+              <span class="status-progress" data-status-progress></span>
+            </div>
+
+            <div class="camera-stage" data-camera-stage>
+              <video data-video autoplay muted playsinline></video>
+              <canvas data-overlay aria-hidden="true"></canvas>
+              <div class="camera-placeholder" data-camera-placeholder>
+                <span class="placeholder-icon">
+                  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 7 9 10H6a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V13a3 3 0 0 0-3-3h-3l-2-3H11Z"/><circle cx="16" cy="18" r="5"/></svg>
+                </span>
+                <strong>Camera is off</strong>
+                <small>Your browser will ask for permission when you start.</small>
+              </div>
+              <div class="camera-guide" aria-hidden="true"><i></i><i></i><i></i><i></i><span></span></div>
+              <div class="model-badge" data-model-badge hidden><i></i> Browser AI ready</div>
+            </div>
+
+            <form class="profile-form" data-profile-form>
+              <div class="field-group">
+                <label for="profile-name">Display name</label>
+                <input id="profile-name" name="name" type="text" autocomplete="name" maxlength="40" placeholder="e.g. Raiyan">
+              </div>
+              <div class="field-group">
+                <label for="profile-email">Email <span>optional</span></label>
+                <input id="profile-email" name="email" type="email" autocomplete="email" maxlength="80" placeholder="you@example.com">
+              </div>
+              <label class="consent-row">
+                <input type="checkbox" data-consent>
+                <span>I consent to storing my face descriptor in this browser.</span>
+              </label>
+            </form>
+
+            <div class="verifier-actions">
+              <button class="button button-camera" type="button" data-start-camera>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 10 4.5-2.5v9L15 14M4 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/></svg>
+                Start camera
+              </button>
+              <button class="button button-enrol" type="button" data-enrol disabled>
+                Enrol this face
+              </button>
+              <button class="button button-verify" type="button" data-verify disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m13 5h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="11" r="3"/></svg>
+                Verify me
+              </button>
+              <button class="text-button" type="button" data-stop-camera hidden>Stop camera</button>
+            </div>
+
+            <div class="result-panel" data-result hidden>
+              <span class="result-icon" data-result-icon></span>
+              <span><strong data-result-title></strong><small data-result-copy></small></span>
+              <div class="score-ring" data-score-ring><b data-result-score>0%</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shell authenticator-card" id="authenticator">
+          <div class="authenticator-intro">
+            <span class="authenticator-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><rect x="6" y="3" width="20" height="26" rx="5"/><path d="M11 10h10M11 15h10M11 20h5"/><circle cx="22" cy="21" r="4"/><path d="M22 19v2l1.5 1"/></svg>
+            </span>
+            <div class="eyebrow eyebrow-light"><span></span> Authenticator</div>
+            <h3>Keep a rotating sign-in code ready</h3>
+            <p>
+              Set up a standard TOTP key once and Sentinel will generate a new six-digit code every
+              30 seconds, even after you refresh this page.
+            </p>
+            <div class="authenticator-warning">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.8 3.2 8.4 7.5 10 4.3-1.6 7.5-5.2 7.5-10V6L12 3Z"/><path d="M12 8v5m0 3h.01"/></svg>
+              <span><strong>Device-local generator</strong>Keeping the generator beside your sign-in flow is convenient, but it is not an independent second factor.</span>
+            </div>
+          </div>
+
+          <div class="authenticator-console">
+            <div class="authenticator-empty" data-auth-empty>
+              <span class="authenticator-empty-icon">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l4 3"/></svg>
+              </span>
+              <strong>No authenticator configured</strong>
+              <p>Enter an account label. You can also import an existing Base32 setup key.</p>
+              <form class="authenticator-form" data-auth-form>
+                <div class="field-group">
+                  <label for="auth-account">Account label</label>
+                  <input id="auth-account" type="text" maxlength="80" placeholder="e.g. raiyan@example.com" autocomplete="username">
+                </div>
+                <div class="field-group">
+                  <label for="auth-secret">Existing setup key <span>optional</span></label>
+                  <input id="auth-secret" type="text" maxlength="128" placeholder="Leave blank to generate one" autocomplete="off" spellcheck="false">
+                </div>
+                <button class="button button-primary" type="submit">Set up authenticator</button>
+              </form>
+            </div>
+
+            <div class="authenticator-active" data-auth-active hidden>
+              <div class="authenticator-topline">
+                <span><i></i><small>Authenticator active</small></span>
+                <button class="text-button" type="button" data-auth-reset>Remove</button>
+              </div>
+              <div class="authenticator-account">
+                <small>Account</small>
+                <strong data-auth-label></strong>
+              </div>
+              <button class="totp-code" type="button" data-auth-copy-code aria-label="Copy current authenticator code">
+                <span data-auth-code aria-live="polite">--- ---</span>
+                <small>Click to copy</small>
+              </button>
+              <div class="totp-timer">
+                <div class="totp-track"><i data-auth-timer-bar></i></div>
+                <span><b data-auth-seconds>30</b>s remaining</span>
+              </div>
+              <details class="setup-key">
+                <summary>View setup key</summary>
+                <div><code data-auth-key></code><button type="button" data-auth-copy-key>Copy</button></div>
+                <p>Register this same key with the service that will verify your generated codes.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-section section" id="how-it-works">
+        <div class="shell how-grid">
+          <div class="how-copy">
+            <div class="eyebrow"><span></span> How it works</div>
+            <h2>From camera to match in three private steps</h2>
+            <p>The camera feed never leaves the page. Only compact numerical descriptors are retained locally for comparison.</p>
+          </div>
+          <ol class="process-list">
+            <li><b>01</b><span><strong>Detect</strong><small>The browser model locates one face in the live frame.</small></span></li>
+            <li><b>02</b><span><strong>Describe</strong><small>Facial characteristics become a numerical embedding—not a saved photo.</small></span></li>
+            <li><b>03</b><span><strong>Compare</strong><small>A fresh embedding is measured against the enrolled samples.</small></span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="privacy-section section" id="privacy">
+        <div class="shell privacy-card">
+          <div>
+            <div class="eyebrow eyebrow-light"><span></span> Your data, your control</div>
+            <h2>Privacy is not an add-on.</h2>
+            <p>This demo has no application backend. Profiles are isolated to the browser and device where they were created.</p>
+          </div>
+          <ul>
+            <li><span>01</span>No photos saved</li>
+            <li><span>02</span>No biometric data transmitted</li>
+            <li><span>03</span>One-click local deletion</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <a class="brand brand-footer" href="#top">
+            <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2.4 27 6.7v8.1c0 7.1-4.7 12.4-11 14.8C9.7 27.2 5 21.9 5 14.8V6.7L16 2.4Z"/><path d="M11 14v-1.5a5 5 0 0 1 10 0V14m-9.2 0h8.4v7.1h-8.4V14Z"/></svg></span>
+            <span>Sentinel</span>
+          </a>
+          <p>A privacy-first face verification demonstration, rebuilt for the web.</p>
+        </div>
+        <div class="footer-links">
+          <div><strong>Product</strong><a href="#product">Overview</a><a href="#demo">Verifier</a><a href="#privacy">Privacy</a></div>
+          <div><strong>Project</strong><a href="mailto:raiyanibnfarid@example.com">Contact Raiyan Ibn Farid</a><a href="#top">Back to top</a></div>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <span>© 2023 Raiyan Ibn Farid</span>
+        <span>Designed and built by Raiyan Ibn Farid</span>
+      </div>
+    </footer>
+
+    <div class="toast" data-toast role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

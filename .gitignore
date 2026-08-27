@@ -1,0 +1,17 @@
+# Local tooling and Vercel metadata
+node_modules/
+.vercel/
+*.log
+
+# Original PHP/XAMPP implementation retained in this workspace as a local reference.
+# It is not part of the browser app and some legacy videos exceed Git hosting limits.
+/*.php
+/6666.PNG
+/style.css
+/title-background.gif
+/images/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
