@@ -1,4 +1,4 @@
-# Original PHP/XAMPP implementation retained as local reference only.
+# Static deployment - only public/ is served via outputDirectory. Keep deployment lean.
 *.php
 ht.php
 connection.php
@@ -9,3 +9,13 @@ images/
 server.mjs
 scripts/
 README.md
+node_modules/
+.vercel/
+.chrome-demo/
+.chrome-mobile/
+.chrome-mobile-2/
+mobile-cdp.png
+mobile-demo.png
+mobile-preview.png
+mobile-preview-2.png
+*.log

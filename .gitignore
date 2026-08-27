@@ -2,6 +2,13 @@
 node_modules/
 .vercel/
 *.log
+.chrome-demo/
+.chrome-mobile/
+.chrome-mobile-2/
+mobile-cdp.png
+mobile-demo.png
+mobile-preview.png
+mobile-preview-2.png
 
 # Original PHP/XAMPP implementation retained in this workspace as a local reference.
 # It is not part of the browser app and some legacy videos exceed Git hosting limits.
