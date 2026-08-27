@@ -36,6 +36,7 @@
         </button>
 
         <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#protect">Protect Link</a>
           <a href="#product">Product</a>
           <a href="#how-it-works">How it works</a>
           <a href="#privacy">Privacy</a>
@@ -57,7 +58,7 @@
               authenticator codes — without sending camera images to a server or creating an online account.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#demo">
+              <a class="button button-primary" href="#protect">
                 Protect a link now
                 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"/></svg>
               </a>
@@ -152,6 +153,65 @@
             <h3>Zero backend, link-ready</h3>
             <p>Runs as static files with no PHP runtime, database, or server session. Everything stays on this device.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="protect-section section" id="protect">
+        <div class="shell section-heading centered-heading">
+          <div class="eyebrow"><span></span> Make any link private</div>
+          <h2>Password-protect any link with face or code</h2>
+          <p>Paste any URL, choose face and/or 6-digit code protection, and get a new shareable link. Anyone opening it will be asked to verify before they can unlock and visit the target.</p>
+        </div>
+        <div class="shell protect-shell">
+          <form class="protect-form" data-protect-form>
+            <div class="field-group">
+              <label for="protect-url">Link to protect <span>https:// required</span></label>
+              <input id="protect-url" type="url" placeholder="https://example.com/secret-doc" maxlength="2048" required autocomplete="off" spellcheck="false">
+            </div>
+            <div class="field-group">
+              <label for="protect-label">Label <span>optional</span></label>
+              <input id="protect-label" type="text" placeholder="e.g. Client proposal — Q4" maxlength="60" autocomplete="off">
+            </div>
+            <div class="protect-options">
+              <label class="protect-check">
+                <input type="checkbox" data-protect-face>
+                <span><strong>Require face match</strong><small>Uses your enrolled face on this device</small></span>
+              </label>
+              <label class="protect-check">
+                <input type="checkbox" data-protect-code>
+                <span><strong>Require 6-digit code</strong><small>Uses the authenticator code below (rotates every 30s)</small></span>
+              </label>
+            </div>
+            <p class="protect-hint" data-protect-hint hidden></p>
+            <button class="button button-primary protect-generate" type="submit" data-protect-generate>Generate protected link</button>
+            <p class="protect-note">Demo vault — links are encrypted and stored locally on this device only. The generated link is shareable, but unlocking requires the same face/code on this browser (no server).</p>
+          </form>
+
+          <div class="protect-output" data-protect-output hidden>
+            <div class="protect-output-header">
+              <span class="protect-output-icon">✓</span>
+              <span><strong>Protected link ready</strong><small data-protect-output-label></small></span>
+            </div>
+            <div class="protect-link-row">
+              <code data-protect-link></code>
+              <button type="button" class="protect-copy" data-copy-protect-link>Copy</button>
+            </div>
+            <div class="protect-output-actions">
+              <a class="button button-ghost" data-protect-open target="_blank" rel="noopener">Test unlock</a>
+              <span class="protect-share-hint">Share this link — it will ask for <b data-protect-requirements></b> before opening <span data-protect-target></span></span>
+            </div>
+          </div>
+
+          <div class="protect-list" data-protect-list>
+            <div class="protect-list-header">
+              <h3>Your protected links on this device</h3>
+              <span class="protect-count" data-protect-count>0 links</span>
+            </div>
+            <div class="protect-empty" data-protect-empty>
+              <p>No links yet. Generate one above — it will appear here and stay in this browser until you delete it.</p>
+            </div>
+            <div class="protect-cards" data-protect-cards></div>
+          </div>
         </div>
       </section>
 
@@ -364,6 +424,59 @@
         <span>Designed and built by Raiyan Ibn Farid</span>
       </div>
     </footer>
+
+    <div class="unlock-overlay" data-unlock-overlay hidden>
+      <div class="unlock-card" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
+        <button class="icon-button unlock-close" type="button" data-unlock-close aria-label="Close unlock dialog">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="unlock-eyebrow eyebrow eyebrow-light"><span></span> Protected link</div>
+        <h3 id="unlock-title" data-unlock-title>This link is locked</h3>
+        <p class="unlock-desc" data-unlock-desc></p>
+        <div class="unlock-meta" data-unlock-meta hidden>
+          <small>Protects</small>
+          <code data-unlock-domain></code>
+        </div>
+
+        <div class="unlock-requirements" data-unlock-requirements></div>
+
+        <div class="unlock-face" data-unlock-face hidden>
+          <div class="unlock-face-header">
+            <span class="unlock-step-badge">Face</span>
+            <small data-unlock-face-status>Ready to verify</small>
+          </div>
+          <button class="button button-camera" type="button" data-unlock-start-camera>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 10 4.5-2.5v9L15 14M4 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/></svg>
+            Unlock with face
+          </button>
+          <span class="unlock-check" data-unlock-face-check hidden>✓ Face verified</span>
+        </div>
+
+        <div class="unlock-code" data-unlock-code hidden>
+          <div class="unlock-code-header">
+            <span class="unlock-step-badge">Code</span>
+            <small data-unlock-code-status>Enter current 6-digit code</small>
+          </div>
+          <div class="unlock-code-row">
+            <input id="unlock-code-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="123 456" autocomplete="one-time-code" data-unlock-code-input>
+            <button class="button button-primary" type="button" data-unlock-verify-code>Verify</button>
+          </div>
+          <span class="unlock-check" data-unlock-code-check hidden>✓ Code verified</span>
+        </div>
+
+        <div class="unlock-success" data-unlock-success hidden>
+          <div class="unlock-success-icon">✓</div>
+          <p>Unlocked — redirecting to <code data-unlock-target></code></p>
+          <div class="unlock-success-actions">
+            <a class="button button-primary" data-unlock-open target="_blank" rel="noopener">Open link now</a>
+            <button class="text-button" type="button" data-unlock-continue>Stay here</button>
+          </div>
+        </div>
+
+        <p class="unlock-error" data-unlock-error hidden></p>
+        <p class="unlock-notfound" data-unlock-notfound hidden>This protected link was not found on this device. Links are stored locally — it may have been created on another browser or deleted. <a href="#protect">Create a new protected link</a></p>
+      </div>
+    </div>
 
     <div class="toast" data-toast role="status" aria-live="polite" hidden></div>
   </body>
